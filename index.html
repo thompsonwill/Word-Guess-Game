@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Word Guess Game</title>
+  <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
+</head>
+
+<body>
+<div id="hangman">
+  <center>
+    <img src="assets/images/header.jpg" alt="Hangman">
+  <h1>Word Guess Game</h1>
+  <h1><div id="status"></div></h1>
+  <p>Type a letter to start guessing the word!</p>
+  <p>Guesses remaining: </p><div id="guessNum">12</div><br>
+  <p>Guessed letters: </p> <div id="letterGuess"></div><br>
+  <div id="boxE">_</div>
+  <div id="boxL">_</div>
+  <div id="boxE2">_</div>
+  <div id="boxP">_</div>
+  <div id="boxH">_</div>
+  <div id="boxA">_</div>
+  <div id="boxN">_</div>
+  <div id="boxT">_</div>
+</center>
+</div>
+
+  <script>
+
+  //Number of guesses & display on the document
+  var guesses = 12;
+
+  document.onkeyup = function(event) {
+    guesses--;
+    document.getElementById("guessNum").innerHTML = guesses;
+
+    // Set the number of guesses
+
+    var userGuesses = [];
+    var userGuess = event.key;
+    for (var i = 1; i < 4; i++) {
+      userGuesses.push(userGuess);
+      document.getElementById("letterGuess").innerHTML = userGuess;
+    }
+
+    var letter = event.key.toLowerCase();
+
+    //Display losing message if no guesses remaining
+    if (guesses < 1) {
+      document.getElementById("status").innerHTML = "You lose! Refresh the page";
+      document.onkeyup = function (e) {
+    e.preventDefault();
+  }
+    }
+
+    //The mess that is my hangman game
+    var str = "Elephant";
+
+    if (letter === "e") {
+      document.getElementById("boxE").innerHTML = "E";
+      document.getElementById("boxE2").innerHTML = "e";
+    }
+    if (letter === "l") {
+      document.getElementById("boxL").innerHTML = "l";
+    }
+
+    if (letter === "p") {
+      document.getElementById("boxP").innerHTML = "p";
+    }
+
+    if (letter === "h") {
+      document.getElementById("boxH").innerHTML = "h";
+    }
+
+    if (letter === "a") {
+      document.getElementById("boxA").innerHTML = "a";
+    }
+
+    if (letter === "n") {
+      document.getElementById("boxN").innerHTML = "n";
+    }
+
+    if (letter === "t") {
+      document.getElementById("boxT").innerHTML = "t";
+    }
+
+    //This is really ugly and I know why it doesn't work. I'm pretty sure I doomed myself with the above code. but I'm in too deep.
+    if (letter === "e" && letter === "l" && letter === "p" && letter === "h" && letter === "a" && letter === "n" && letter === "t") {
+      document.getElementById("status").innerHTML = "You win!";
+    }
+      }
+
+
+  //On key press - need to display what key was chosen, and check if it is in the word
+
+  //If the word is guessed, play a song or noise.
+
+  </script>
+
+</body>
+
+</html>
